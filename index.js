@@ -13,14 +13,28 @@ The third line contains n space-separated strings, each note[i].
 
 function checkMagazine(magazine, note) {
     const hashMap = new Map();
-    hashMap.set('magazine', magazine);
-    hashMap.set('note', note);
-    for (let word of hashMap.values()) {
-        if (hashMap.has(word)) {
-            return 'Yes';
+
+    for (let i = 0; i < magazine.length; i++) {
+        if (hashMap.has(magazine[i])) {
+            hashMap.set(magazine[i], hashMap.get(magazine[i]) + 1);
         }
         else {
-            return 'No';
+            hashMap.set(magazine[i], 1);
         }
     }
+
+    for (let i = 0; i < note.length; i++) {
+        if (!hashMap.has(note[i]) || hashMap.get(note[i]) === 0) {
+            console.log(hashMap);
+            return 'false';
+        }
+        hashMap.set(note[i], hashMap.get(note[i]) - 1);
+    }
+    console.log(hashMap);
+    return 'yes';
 }
+
+const myMagazine = ['arielle', 'has', 'some', 'a', 'lovely', 'bunch', 'of', 'coconuts', 'giggidy', 'goo'];
+const myNote = ['arielle', 'has', 'a', 'lovely', 'bunch', 'of', 'coconuts'];
+
+console.log(checkMagazine(myMagazine, myNote));
