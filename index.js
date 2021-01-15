@@ -12,8 +12,10 @@ The third line contains n space-separated strings, each note[i].
 */
 
 function checkMagazine(magazine, note) {
+    // declare a map object to store the values and compare them
     const hashMap = new Map();
 
+    // iterate over magazine array to get the words
     for (let i = 0; i < magazine.length; i++) {
         if (hashMap.has(magazine[i])) {
             hashMap.set(magazine[i], hashMap.get(magazine[i]) + 1);
@@ -25,12 +27,12 @@ function checkMagazine(magazine, note) {
 
     for (let i = 0; i < note.length; i++) {
         if (!hashMap.has(note[i]) || hashMap.get(note[i]) === 0) {
-            console.log(hashMap);
-            return 'false';
+
+            return 'no';
         }
         hashMap.set(note[i], hashMap.get(note[i]) - 1);
     }
-    console.log(hashMap);
+
     return 'yes';
 }
 
